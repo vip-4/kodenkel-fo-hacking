@@ -1,0 +1,43 @@
+# FO Hacking
+
+> 免費開源的 Fallout 風格終端機駭客益智遊戲：從字海矩陣中找出正確的密碼單字，利用每次嘗試後回傳的「相符位數」線索，在 4 次嘗試內破解終端機。支援 4–9 字單字長度。TypeScript / HTML5 Canvas 網頁版，免註冊、免下載、100% 離線、無廣告、無追蹤，採 GPL-2.0 授權。
+
+正式網址：https://vip-4.github.io/kodenkel-fo-hacking/
+原始碼：https://github.com/goobemaster/kodenkel-fo-hacking
+線上展示（原作者）：https://www.kodenkel.com/games/fo-hacking/
+
+## 概述
+
+FO Hacking 是一款 Fallout 風格的終端機駭客益智遊戲。靈感來自 Fallout 3 / New Vegas 中的終端機駭客小遊戲。玩家在一個充滿隨機單字的矩陣中，找出唯一的密碼單字。每次選擇一個單字後，系統回報該單字與密碼的「相符位數」（位置和字符皆相符的數量），玩家需利用這些線索逐步縮小範圍，在 4 次嘗試內找到正確密碼。
+
+本頁為該 GPL-2.0 開源專案的網頁發行頁，遊戲以 TypeScript 編譯為單一 JS bundle，於瀏覽器內執行，不需安裝或註冊。
+
+## 玩法
+
+1. 選擇單字長度（4–9 字）。
+2. 在終端機的單字矩陣中，點選一個單字作為密碼猜測。
+3. 系統回報「相符位數」——即該單字與正確密碼在相同位置上有多少字符相同。
+4. 根據線索推理，排除不可能的選項，再選下一個單字。
+5. 在 4 次嘗試內找到正確密碼即可破解成功。
+
+## 特色
+
+- Fallout 3 / New Vegas 風格終端機美學（綠底黑字、像素風）
+- 支援 4–9 字單字長度，可調難度
+- 100% 離線，不需要網路
+- 無廣告、無追蹤、無分析
+- 純前端 TypeScript / HTML5 Canvas 2D
+- 開源 GPL-2.0，原始碼可驗證
+
+## 技術說明
+
+- 語言：TypeScript
+- 打包：esbuild（單一 JS bundle，約 20 KB）
+- 算繪：HTML5 Canvas 2D
+- 執行環境：任何支援 Canvas 的現代瀏覽器
+
+## 開源與授權
+
+- 原作者：goobemaster
+- 授權：GNU GPL v2.0
+- 原始碼：https://github.com/goobemaster/kodenkel-fo-hacking
