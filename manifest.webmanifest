@@ -1,0 +1,24 @@
+{
+  "name": "FO Hacking",
+  "short_name": "FO Hacking",
+  "description": "Fallout 風格終端機駭客益智遊戲：從字海矩陣中找出正確密碼，在 4 次嘗試內破解終端機。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b1021",
+  "theme_color": "#0b1021",
+  "icons": [
+    {
+      "src": "play/assets/images/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "play/assets/images/favicon/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
