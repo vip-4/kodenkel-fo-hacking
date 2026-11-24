@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1021">
+  <meta name="color-scheme" content="dark">
+  <title>FO Hacking｜免費開源 Fallout 終端機駭客小遊戲（TypeScript 網頁版）</title>
+  <meta name="description" content="FO Hacking 是一款以 HTML5 Canvas 實作的 Fallout 風格終端機駭客益智遊戲：從字海矩陣中找出正確的密碼單字，在 4 次嘗試內破解終端機。免費、開源、免安裝、免註冊，TypeScript 編寫，GPL-2.0 授權。">
+  <meta name="keywords" content="Fallout hacking, FO hacking, 終端機駭客, 駭客遊戲, Fallout 3, Fallout New Vegas, 密碼破解, 益智遊戲, Canvas 遊戲, TypeScript 遊戲, 開源遊戲, GPL-2.0, 免費線上遊戲">
+  <meta name="author" content="goobemaster">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://vip-4.github.io/kodenkel-fo-hacking/">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FO Hacking">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="FO Hacking｜免費開源 Fallout 終端機駭客小遊戲">
+  <meta property="og:description" content="從字海矩陣中找出正確密碼，在 4 次嘗試內破解 Fallout 風格終端機。免費、開源、免安裝，TypeScript 編寫。">
+  <meta property="og:url" content="https://vip-4.github.io/kodenkel-fo-hacking/">
+  <meta property="og:image" content="https://vip-4.github.io/kodenkel-fo-hacking/og-image.png">
+  <meta property="og:image:secure_url" content="https://vip-4.github.io/kodenkel-fo-hacking/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FO Hacking 遊戲示意：Fallout 風格終端機介面與綠色字海">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FO Hacking｜免費開源 Fallout 終端機駭客小遊戲">
+  <meta name="twitter:description" content="從字海矩陣中找出正確密碼，在 4 次嘗試內破解 Fallout 風格終端機。免費、開源、免安裝。">
+  <meta name="twitter:image" content="https://vip-4.github.io/kodenkel-fo-hacking/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://vip-4.github.io/kodenkel-fo-hacking/#website",
+    "url": "https://vip-4.github.io/kodenkel-fo-hacking/",
+    "name": "FO Hacking",
+    "description": "Fallout 風格終端機駭客益智遊戲網頁版。",
+    "inLanguage": "zh-Hant",
+    "datePublished": "2026-11-24"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://vip-4.github.io/kodenkel-fo-hacking/#app",
+    "name": "FO Hacking",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "任何支援 HTML5 Canvas 的現代瀏覽器",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "goobemaster" },
+    "license": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+    "description": "Fallout 風格終端機駭客益智遊戲：從字海矩陣中找出正確密碼，在 4 次嘗試內破解終端機。"
+  }
+  </script>
+
+  <style>
+    :root { --bg:#0b1021; --card:#131a33; --green:#22c55e; --green-bright:#4ade80; --green-dark:#052e16; --text:#e8ecf8; --muted:#a9b4d0; --gold:#fbbf24; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, sans-serif; line-height:1.6; }
+    a { color:var(--green-bright); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+    header.site { padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    header.site h1 { margin:.25rem 0; font-size: 2rem; }
+    header.site p.tag { color:var(--muted); margin:0; }
+    .hero { display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 2rem 0; align-items: center; }
+    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
+    .hero .intro h2 { font-size: 1.6rem; margin:0 0 .5rem; }
+    .hero .intro p { color:var(--muted); }
+    .badges { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0; }
+    .badge { background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.4); color:var(--text); padding:.25rem .6rem; border-radius:999px; font-size:.85rem; }
+    .cta { display:inline-block; background:var(--green); color:#052e16; padding:.7rem 1.4rem; border-radius:8px; font-weight:700; margin-top:.5rem; }
+    .cta:hover { filter:brightness(1.1); text-decoration:none; }
+    .frame-wrap { background:#000; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; aspect-ratio: 4/3; }
+    .frame-wrap iframe { width:100%; height:100%; border:0; }
+    section { padding: 2rem 0; border-top: 1px solid rgba(255,255,255,.06); }
+    section h2 { font-size: 1.4rem; margin:0 0 1rem; }
+    section h3 { font-size: 1.1rem; margin:1.25rem 0 .5rem; color:var(--green-bright); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:1rem; }
+    .card h3 { margin:0 0 .4rem; color:var(--green-bright); font-size:1rem; }
+    .card p { margin:0; color:var(--muted); font-size:.9rem; }
+    .rules { background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:1rem 1.25rem; }
+    .rules ol { margin:.5rem 0 0 1.25rem; }
+    .rules li { margin:.35rem 0; }
+    .source-note { color:var(--muted); font-size:.85rem; margin-top:1rem; }
+    footer { padding:2rem 0; color:var(--muted); font-size:.85rem; border-top:1px solid rgba(255,255,255,.06); }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1>FO Hacking</h1>
+      <p class="tag">Fallout 風格終端機駭客益智遊戲｜TypeScript / Canvas 網頁版｜GPL-2.0</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="intro">
+        <h2>在 4 次嘗試內破解終端機</h2>
+        <p>FO Hacking 是一款以 HTML5 Canvas 實作的 Fallout 風格終端機駭客小遊戲：從字海矩陣中找出正確的密碼單字，利用每次嘗試後回傳的「相符位數」線索，在 4 次嘗試內破解終端機。</p>
+        <div class="badges">
+          <span class="badge">🆓 免費開源</span>
+          <span class="badge">🔒 無追蹤</span>
+          <span class="badge">🌐 免安裝</span>
+          <span class="badge">⚡ TypeScript</span>
+          <span class="badge">📜 GPL-2.0</span>
+        </div>
+        <a class="cta" href="#play">立即遊玩 →</a>
+      </div>
+      <div class="frame-wrap" id="play">
+        <iframe src="play/index.html" title="FO Hacking 遊戲" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>關於 FO Hacking</h2>
+      <p>FO Hacking 靈感來自 Fallout 3 / New Vegas 中的終端機駭客小遊戲。玩家扮演駭客，在一個充滿隨機單字的矩陣中，找出唯一的密碼單字。每次選擇一個單字後，系統會回報該單字與密碼的「相符字符數」，玩家需利用這些線索逐步縮小範圍，在 4 次嘗試內找到正確密碼。</p>
+      <div class="rules">
+        <ol>
+          <li>終端機顯示一個由隨機單字組成的矩陣。</li>
+          <li>點選其中一個單字作為猜測的密碼。</li>
+          <li>系統回報該單字與正確密碼之間「位置和字符皆相符」的數量。</li>
+          <li>利用線索推理性刪去不可能的答案。</li>
+          <li>在 4 次嘗試內找到正確密碼即破解成功。</li>
+        </ol>
+      </div>
+      <p style="margin-top:1rem">遊戲提供 4–9 字的單字長度選項，難度隨長度增加而提升。純前端 Canvas 2D 算繪，無後端、無資料收集。</p>
+    </section>
+
+    <section id="features">
+      <h2>特色</h2>
+      <div class="grid">
+        <div class="card"><h3>🆓 免費開源</h3><p>GPL-2.0 授權，原始碼公開可查，可自由學習與改作。</p></div>
+        <div class="card"><h3>🔒 無追蹤</h3><p>無廣告、無分析、無資料收集。純靜態網頁，不發送任何請求。</p></div>
+        <div class="card"><h3>🌐 免安裝</h3><p>TypeScript 編譯為單一 JS bundle，在瀏覽器中直接執行。</p></div>
+        <div class="card"><h3>⚡ 輕量</h3><p>打包後僅約 20 KB，Canvas 2D 算繪，低資源消耗。</p></div>
+        <div class="card"><h3>📏 可調難度</h3><p>支援 4–9 字單字長度，從入門到挑戰。</p></div>
+        <div class="card"><h3>🎨 復古風格</h3><p>綠底黑字的 Fallout 終端機美學，像素風渲染。</p></div>
+      </div>
+    </section>
+
+    <section id="howto">
+      <h2>如何遊玩</h2>
+      <ol>
+        <li>開啟遊戲，選擇單字長度（4–9 字）。</li>
+        <li>在終端機的單字矩陣中，點選一個單字作為密碼猜測。</li>
+        <li>系統回報「相符位數」——即該單字與正確密碼在相同位置上有多少字符相同。</li>
+        <li>根據線索推理，排除不可能的選項，再選下一個單字。</li>
+        <li>在 4 次嘗試內找到正確密碼即可破解成功；否則遊戲結束。</li>
+      </ol>
+      <p class="source-note">提示：先選擇一個「每個字符都不同」的單字，能獲得最大資訊量；之後根據回報的相符數逐步縮小範圍。</p>
+    </section>
+
+    <section id="source">
+      <h2>開源來源與授權</h2>
+      <p>本頁為 goobemaster/kodenkel-fo-hacking 的網頁發行版。遊戲以 TypeScript 開發、esbuild 打包為單一 JS bundle，採 GPL-2.0 授權。原始碼請見原始倉庫。</p>
+      <ul>
+        <li>原始倉庫：<a href="https://github.com/goobemaster/kodenkel-fo-hacking" rel="noopener noreferrer">github.com/goobemaster/kodenkel-fo-hacking</a></li>
+        <li>授權：GNU GPL v2.0</li>
+        <li>技術：TypeScript / esbuild / HTML5 Canvas 2D</li>
+        <li>線上展示（原作者）：<a href="https://www.kodenkel.com/games/fo-hacking/" rel="noopener noreferrer">kodenkel.com/games/fo-hacking</a></li>
+      </ul>
+      <p class="source-note">本頁僅提供連結與署名，未修改遊戲內容。本站未使用任何外部專案的原始碼、貼圖或音訊。</p>
+    </section>
+
+    <section id="faq">
+      <h2>常見問題</h2>
+      <details>
+        <summary>FO Hacking 是什麼遊戲？</summary>
+        <p>FO Hacking 是一款 Fallout 風格的終端機駭客益智遊戲：從字海矩陣中找出正確密碼，利用每次嘗試後回傳的「相符位數」線索，在 4 次內破解終端機。</p>
+      </details>
+      <details>
+        <summary>需要付費或註冊嗎？</summary>
+        <p>不需要。完全免費、開源、免註冊、免下載，開啟網頁即可遊玩。</p>
+      </details>
+      <details>
+        <summary>有哪些難度可以選擇？</summary>
+        <p>支援 4–9 字的單字長度。較長的單字意味著更大的搜尋空間和更高的難度。</p>
+      </details>
+      <details>
+        <summary>「相符位數」是什麼意思？</summary>
+        <p>當你選擇一個單字作為猜測時，系統會告訴你這個單字與正確密碼在相同位置上有多少字符是相同的。例如密碼是 HACK，你選了 BACK，則相符位數為 2（A 和 K 的位置相同）。</p>
+      </details>
+      <details>
+        <summary>授權是什麼？</summary>
+        <p>GNU GPL v2.0。原始碼公開，可自由學習與改作，衍生作品須同樣採 GPL-2.0 授權。</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>FO Hacking — Fallout 風格終端機駭客益智遊戲。原始碼：<a href="https://github.com/goobemaster/kodenkel-fo-hacking" rel="noopener noreferrer">goobemaster/kodenkel-fo-hacking</a>（GPL-2.0）。</p>
+      <p>本站僅供技術示範與娛樂，不涉及真實金錢。</p>
+    </div>
+  </footer>
+</body>
+</html>
